@@ -34,22 +34,34 @@ router.get('/:id', (req, res) => {
 
 //create a new tag
 router.post('/', (req, res) => {
-  // create a new tag
-  //  Tag.create(req.body)
-  // .then
-});
+  Tag.create(req.body)
+    .then((tag) => {
+      res.json(tag);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 
-router.put('/:id', (req, res) => {
   // update a tag's name by its `id` value
-  Tag.update(req.body, {
-    where: {
-      id: req.params.id,
-    }
-  })
-});
+  router.put('/:id', (req, res) => {
+    Tag.update(req.body, {
+      where: {
+        id: req.params.id,
+      }
+    })
+  });
 
-router.delete('/:id', (req, res) => {
   // delete on tag by its `id` value
+  router.delete('/:id', (req, res) =>
+    Tag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    })
+      .then((tag) => {
+        res.json(tag);
+      })
+      .catch((err) => res.json(err));
 });
 
 module.exports = router;
