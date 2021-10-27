@@ -14,10 +14,13 @@ router.get('/', (req, res) => {
       }
     ],
   }).then((products) => res.json(products))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // get one product
-// may be products when you do the .then :)
 router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
@@ -31,6 +34,10 @@ router.get('/:id', (req, res) => {
       }
     ]
   }).then((products) => res.json(products))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // create new product
@@ -114,10 +121,11 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((products) => {
-      res.json(products);
-    })
-    .catch((err) => res.json(err));
+    .then((products) => res.json(products))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
