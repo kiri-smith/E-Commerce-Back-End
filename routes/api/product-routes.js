@@ -30,8 +30,7 @@ router.get('/:id', (req, res) => {
         through: ProductTag,
       }
     ]
-
-  })
+  }).then((products) => res.json(products))
 });
 
 // create new product
