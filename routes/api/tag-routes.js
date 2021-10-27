@@ -41,15 +41,15 @@ router.post('/', (req, res) => {
     .catch((err) => {
       res.json(err);
     });
+});
 
-  // update a tag's name by its `id` value
-  router.put('/:id', (req, res) => {
-    Tag.update(req.body, {
-      where: {
-        id: req.params.id,
-      }
-    })
-  });
+// update a tag's name by its `id` value
+router.put('/:id', (req, res) => {
+  Tag.update(req.body, {
+    where: {
+      id: req.params.id,
+    }
+  })
 });
 
 // delete on tag by its `id` value
