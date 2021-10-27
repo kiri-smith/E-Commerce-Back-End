@@ -13,7 +13,13 @@ router.get('/', (req, res) => {
         through: ProductTag,
       }
     ],
-  }).then((tags) => res.json(tags))
+  }).then((tags) => {
+    res.json(tags);
+  })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 //get one tag by 'id'
@@ -29,7 +35,13 @@ router.get('/:id', (req, res) => {
         through: ProductTag,
       }
     ]
-  }).then((tags) => res.json(tags))
+  }).then((tags) => {
+    res.json(tags);
+  })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 //create a new tag
@@ -38,8 +50,9 @@ router.post('/', (req, res) => {
     .then((tags) => {
       res.json(tags);
     })
-    .catch((err) => {
-      res.json(err);
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
     });
 });
 
@@ -50,6 +63,17 @@ router.put('/:id', (req, res) => {
       id: req.params.id,
     }
   })
+    .then(tags => {
+      if (!tags) {
+        res.status(404).json({ message: 'Could not find a tag with that specified id.' });
+        return;
+      }
+      res.json(tags);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // delete on tag by its `id` value
@@ -59,10 +83,17 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then((tags) => {
+    .then(tags => {
+      if (!tags) {
+        res.status(404).json({ message: 'Could not find a tag with that specified id.' });
+        return;
+      }
       res.json(tags);
     })
-    .catch((err) => res.json(err));
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;

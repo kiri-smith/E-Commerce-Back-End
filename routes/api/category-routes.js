@@ -11,12 +11,12 @@ router.get('/', (req, res) => {
       model: Product,
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
-  }).then((category) => {
-    if (!category) {
+  }).then((categories) => {
+    if (!categories) {
       res.status(404).json({ message: 'Could not find a category.' });
       return;
     }
-    res.json(category);
+    res.json(categories);
   })
     .catch(err => {
       console.log(err);
@@ -34,12 +34,12 @@ router.get('/:id', (req, res) => {
       model: Product,
       attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
     }
-  }).then((category) => {
-    if (!category) {
-      res.status(404).json({ message: 'Could not find a category.' });
+  }).then((categories) => {
+    if (!categories) {
+      res.status(404).json({ message: 'Could not find a category with that specified id.' });
       return;
     }
-    res.json(category);
+    res.json(categories);
   })
     .catch(err => {
       console.log(err);
@@ -50,8 +50,8 @@ router.get('/:id', (req, res) => {
 // create a new category
 router.post('/', (req, res) => {
   Category.create(req.body)
-    .then((category) => {
-      res.json(category);
+    .then((categories) => {
+      res.json(categories);
     })
     .catch((err) => {
       res.json(err);
@@ -66,12 +66,12 @@ router.put('/:id', (req, res) => {
       id: req.params.id,
     }
   })
-    .then((category) => {
-      if (!category) {
-        res.status(404).json({ message: 'Could not find a category' });
+    .then((categories) => {
+      if (!categories) {
+        res.status(404).json({ message: 'Could not find a category with that specified id' });
         return;
       }
-      res.json(category);
+      res.json(categories);
     })
     .catch(err => {
       console.log(err);
@@ -86,9 +86,9 @@ router.delete('/:id', (req, res) => {
       id: req.params.id,
     },
   })
-    .then(category => {
-      if (!category) {
-        res.status(404).json({ message: 'Could not find a category' });
+    .then(categories => {
+      if (!categories) {
+        res.status(404).json({ message: 'Could not find a category with that specified id' });
         return;
       }
       res.json(category);
