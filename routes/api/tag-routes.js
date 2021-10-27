@@ -35,8 +35,8 @@ router.get('/:id', (req, res) => {
 //create a new tag
 router.post('/', (req, res) => {
   Tag.create(req.body)
-    .then((tag) => {
-      res.json(tag);
+    .then((tags) => {
+      res.json(tags);
     })
     .catch((err) => {
       res.json(err);
@@ -50,18 +50,19 @@ router.post('/', (req, res) => {
       }
     })
   });
+});
 
-  // delete on tag by its `id` value
-  router.delete('/:id', (req, res) =>
-    Tag.destroy({
-      where: {
-        id: req.params.id,
-      },
+// delete on tag by its `id` value
+router.delete('/:id', (req, res) => {
+  Tag.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((tags) => {
+      res.json(tags);
     })
-      .then((tag) => {
-        res.json(tag);
-      })
-      .catch((err) => res.json(err));
+    .catch((err) => res.json(err));
 });
 
 module.exports = router;
