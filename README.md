@@ -4,13 +4,14 @@ For this project, I built off of starter code to build the back end for an e-com
 ## Snapshot
 
 API examples in Insomnia:
-<img src="assets\Snip1.JPG" alt="Snippet of Employees table">
-<img src="assets\Snip2.JPG" alt="Snippet of Roles table">
-<img src="assets\Snip3.JPG" alt="Snippet of Departments table">
+<img src="assets\Snip1.JPG" alt="Snippet of GET All Categories Response">
+<img src="assets\Snip2.JPG" alt="Snippet of GET All Products Response">
+<img src="assets\Snip3.JPG" alt="Snippet of GET All Tags Response">
 
 ## Demo Video
 
-* [need](#)
+* [https://watch.screencastify.com/v/44erwdQBMzTdNU32t0an](Video 1--view first)
+* [https://watch.screencastify.com/v/0VlVQZxF9FLMg4A6olmE](Video 2--view second)
 
 ## Built With
 
